@@ -29,7 +29,7 @@ class FragmentMain : Fragment() {
         binding.floatingButtonAdd.setOnClickListener {
             fragmentMainToAddFragment()
         }
-        
+
 
         viewModel=ViewModelProvider(this).get(MainViewModel::class.java)
 

@@ -1,5 +1,26 @@
 <resources>
     <string name="app_name">NewOrdoManager</string>
 
+    <string name="no_ordo">Aucune ordonnance.</string>
+    <string name="add_ordo">Ajouter une ordonnance</string>
+    <string name="name">Nom</string>
+    <string name="first_name">Prénom</string>
+    <string name="date_start">Date début</string>
+    <string name="date_end">Date fin</string>
+    <string name="duration">Durée</string>
+    <string name="chronicle">Chronique</string>
+
+    
+    <string name="patient">Patient</string>
+    <string name="ordonnance">Ordonnance</string>
+    <string name="semaine">semaine(s)</string>
+    <string name="mois">mois</string>
+    <string name="jours">jour(s)</string>
+
+
+
+
+
+
 
 </resources>

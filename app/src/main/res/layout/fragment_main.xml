@@ -5,6 +5,12 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.lefebvre.thomas.newordomanager.ui.main.MainViewModel" />
+
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +22,11 @@
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="MainFragment"
+            android:gravity="center"
+            android:text="@string/no_ordo"
+
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +45,12 @@
             android:id="@+id/floatingButtonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Design.FloatingActionButton"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background"/>
+            app:srcCompat="@drawable/ic_add_black_24dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
