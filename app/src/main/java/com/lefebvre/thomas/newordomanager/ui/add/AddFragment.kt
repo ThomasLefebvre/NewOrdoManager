@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.snackbar.Snackbar
 
 import com.lefebvre.thomas.newordomanager.R
 import com.lefebvre.thomas.newordomanager.databinding.FragmentAddBinding
@@ -64,6 +65,8 @@ class AddFragment : Fragment() {
                 cal.set(Calendar.YEAR, year)
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                Snackbar.make(requireView(),cal.toString(),Snackbar.LENGTH_SHORT).show()
 
 //                viewModel.dateEvent.value = (cal.timeInMillis)//get date pick
             }

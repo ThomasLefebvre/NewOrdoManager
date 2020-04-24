@@ -17,8 +17,9 @@ interface OrdonnanceDao {
     @Query("SELECT* FROM ordonnances WHERE nom= :nom")
     fun loadOrdoById(nom:String):Ordonnance
 
+
     @Insert
-    fun insertAll(vararg listCategories:Ordonnance)
+    fun insert(ordonnance:Ordonnance)
 
 
     @Update
