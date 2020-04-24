@@ -10,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 
 import com.lefebvre.thomas.newordomanager.R
 import com.lefebvre.thomas.newordomanager.databinding.FragmentAddBinding
+import com.lefebvre.thomas.newordomanager.ui.main.MainViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,6 +38,7 @@ class AddFragment : Fragment() {
     private lateinit var binding:FragmentAddBinding
     private var cal = Calendar.getInstance()
     private val listInt=ArrayList<String>()
+    private lateinit var viewModel:MainViewModel
 
 
 
@@ -45,6 +48,9 @@ class AddFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_add,container,false)
+
+        viewModel=ViewModelProvider(activity!!).get(MainViewModel::class.java)
+        binding.viewModel=viewModel
 
         onClickDatePicker()
         for (i in 1..10){
@@ -66,7 +72,12 @@ class AddFragment : Fragment() {
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                Snackbar.make(requireView(),cal.toString(),Snackbar.LENGTH_SHORT).show()
+
+                viewModel.dateStartString.value=cal.timeInMillis.toString()
+                binding.dateStartString.setText(viewModel.dateStartString.value!!)
+
+
+
 
 //                viewModel.dateEvent.value = (cal.timeInMillis)//get date pick
             }

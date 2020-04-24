@@ -5,16 +5,16 @@ import androidx.room.*
 
 @Dao
 interface OrdonnanceDao {
-    @Query("SELECT* FROM ordonnances ORDER BY dateFinUS ASC, nom ASC")
+    @Query("SELECT* FROM ordonnances ORDER BY dateEndLong ASC, name ASC")
     fun getOrderByDate():List<Ordonnance>
 
-    @Query("SELECT* FROM ordonnances ORDER BY nom ASC, dateFinUS ASC")
+    @Query("SELECT* FROM ordonnances ORDER BY name ASC, dateEndLong ASC")
     fun getOrderByName():List<Ordonnance>
 
     @Query("SELECT* FROM ordonnances WHERE id= :id LIMIT 1")
     fun loadOrdoById(id:Long):Ordonnance
 
-    @Query("SELECT* FROM ordonnances WHERE nom= :nom")
+    @Query("SELECT* FROM ordonnances WHERE name= :nom")
     fun loadOrdoById(nom:String):Ordonnance
 
 

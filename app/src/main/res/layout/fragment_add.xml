@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.lefebvre.thomas.newordomanager.ui.main.MainViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +56,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +77,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.firstName}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,10 +110,12 @@
 
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dateStartString"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:editable="false"
-                        android:focusable="false" />
+                        android:focusable="false"
+                 />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <RadioGroup
@@ -170,11 +178,11 @@
                     android:id="@+id/textFieldDateEnd"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="0dp"
-                    android:hint="@string/date_end"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:hint="@string/date_end"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroup">
@@ -184,7 +192,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:editable="false"
-                        android:focusable="false" />
+                        android:focusable="false"
+                        android:text="@{viewModel.dateEndString}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

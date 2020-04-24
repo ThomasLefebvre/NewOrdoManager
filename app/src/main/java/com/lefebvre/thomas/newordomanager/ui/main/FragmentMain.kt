@@ -31,7 +31,7 @@ class FragmentMain : Fragment() {
         }
 
 
-        viewModel=ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel=ViewModelProvider(activity!!).get(MainViewModel::class.java)
 
 
         return binding.root

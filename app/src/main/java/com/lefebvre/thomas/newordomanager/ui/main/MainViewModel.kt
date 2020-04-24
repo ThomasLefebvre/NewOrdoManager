@@ -18,7 +18,7 @@ class MainViewModel(application: Application) :
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     //database
-    private val database= DatabaseOrdonnance.getInstance(application).ordonnanceDao
+    private val database=DatabaseOrdonnance.getInstance(application).ordonnanceDao
 
     val name = MutableLiveData<String>()
     val firstName = MutableLiveData<String>()
@@ -28,18 +28,18 @@ class MainViewModel(application: Application) :
     val dateEndString = MutableLiveData<String>()
     val dateEndLong = MutableLiveData<Long>()
 
-    private fun insertOrdo() {
-        uiScope.launch {
-            val ordonnance=Ordonnance(0,name.value!!,firstName.value!!,dateStartString.value!!,dateEndString.value!!,"",true)//TODO
-            insertOrdoDatabase(ordonnance)
-        }
-    }
-
-    private suspend fun insertOrdoDatabase(ordonnance:Ordonnance){
-       withContext(Dispatchers.IO){
-           database.insert(ordonnance)
-       }
-    }
+//    private fun insertOrdo() {
+//        uiScope.launch {
+//            val ordonnance=Ordonnance(0,name.value!!,firstName.value!!,dateStartString.value!!,dateStartLong.value!!,dateEndString.value!!,dateEndLong.value!!)
+//            insertOrdoDatabase(ordonnance)
+//        }
+//    }
+//
+//    private suspend fun insertOrdoDatabase(ordonnance:Ordonnance){
+//       withContext(Dispatchers.IO){
+//           database.insert(ordonnance)
+//       }
+//    }
 
 
 }

@@ -8,11 +8,12 @@ import androidx.room.PrimaryKey
 
 data class Ordonnance
     (
-    @ColumnInfo(name="id")@PrimaryKey(autoGenerate = true)var id:Long=0,
-    @ColumnInfo(name="nom")var nom:String,
-    @ColumnInfo(name="prenom")var prenom:String,
-    @ColumnInfo(name="dateDebut")var dateDebut:String,
-    @ColumnInfo(name="dateFinFR")var dateFin:String,
-    @ColumnInfo(name="dateFinUS")var dateFinTri:String,
-    @ColumnInfo(name="chronique")var chronique:Boolean
+    @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long = 0,
+    @ColumnInfo(name = "name") var name: String,
+    @ColumnInfo(name = "firstName") var firstName: String,
+    @ColumnInfo(name = "dateStartString") var dateStartString: String,
+    @ColumnInfo(name = "dateStartLong") var dateStartLong: Long,
+    @ColumnInfo(name = "dateEndString") var dateEndString: String,
+    @ColumnInfo(name = "dateEndLong") var dateEndLong: Long
+
 )

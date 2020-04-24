@@ -12,7 +12,7 @@ import androidx.room.TypeConverters
     version = 1,
     exportSchema = false
 )
-@TypeConverters(Converters::class)
+
 
 abstract class DatabaseOrdonnance : RoomDatabase() {
 
@@ -32,7 +32,7 @@ abstract class DatabaseOrdonnance : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 DatabaseOrdonnance::class.java,
-                "property_database"
+                "ordonnances"
             )
                 .fallbackToDestructiveMigration()
                 .build()
