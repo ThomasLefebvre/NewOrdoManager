@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.lefebvre.thomas.newordomanager.R
 import com.lefebvre.thomas.newordomanager.databinding.FragmentAddBinding
 import com.lefebvre.thomas.newordomanager.ui.main.MainViewModel
+import fr.thomas.lefebvre.toutougo.utils.setDateToString
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -58,6 +59,8 @@ class AddFragment : Fragment() {
         }
         setSpinnerInt()
 
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 
@@ -73,13 +76,9 @@ class AddFragment : Fragment() {
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
 
-                viewModel.dateStartString.value=cal.timeInMillis.toString()
-                binding.dateStartString.setText(viewModel.dateStartString.value!!)
+                viewModel.dateStartLong.value= cal.timeInMillis
 
 
-
-
-//                viewModel.dateEvent.value = (cal.timeInMillis)//get date pick
             }
 
         binding.buttonDateStart.setOnClickListener {

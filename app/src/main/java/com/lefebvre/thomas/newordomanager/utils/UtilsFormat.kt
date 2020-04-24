@@ -4,7 +4,6 @@ package fr.thomas.lefebvre.toutougo.utils
 import android.content.Context
 import android.opengl.Visibility
 import android.view.View
-import fr.thomas.lefebvre.toutougo.R
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -115,6 +115,7 @@
                         android:layout_height="wrap_content"
                         android:editable="false"
                         android:focusable="false"
+                        app:date="@{viewModel.dateStartLong}"
                  />
                 </com.google.android.material.textfield.TextInputLayout>
 
