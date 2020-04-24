@@ -46,4 +46,9 @@ dependencies {
 
     //material design
     implementation 'com.google.android.material:material:1.1.0'
+
+    //room
+    implementation "androidx.room:room-runtime:2.1.0"
+    annotationProcessor "androidx.room:room-compiler:2.1.0"
+
 }

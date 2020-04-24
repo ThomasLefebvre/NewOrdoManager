@@ -46,7 +46,7 @@ class AddFragment : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_add,container,false)
 
         onClickDatePicker()
-        for (i in 0..10){
+        for (i in 1..10){
             listInt.add(i.toString())
         }
         setSpinnerInt()
