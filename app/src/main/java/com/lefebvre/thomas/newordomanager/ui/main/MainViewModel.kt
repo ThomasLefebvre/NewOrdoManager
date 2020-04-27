@@ -24,7 +24,7 @@ class MainViewModel(application: Application) :
     val firstName = MutableLiveData<String>()
     val dateStartString = MutableLiveData<String>()
     val dateStartLong = MutableLiveData<Long>()
-    val duration = MutableLiveData<Long>()
+    val durationInt = MutableLiveData<Long>()
     val dateEndString = MutableLiveData<String>()
     val dateEndLong = MutableLiveData<Long>()
 
