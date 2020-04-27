@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.lefebvre.thomas.newordomanager.ui.main.MainViewModel" />
+            type="com.lefebvre.thomas.newordomanager.ui.add.AddOrdoViewModel" />
 
     </data>
 
@@ -45,9 +45,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="16dp"
                     android:hint="@string/name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -66,9 +66,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="16dp"
                     android:hint="@string/first_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -78,22 +78,21 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{viewModel.firstName}" />
+                        android:text="@={viewModel.firstName}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.button.MaterialButton
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/buttonDateStart"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/date_start"
-                    android:textColor="@color/colorGris"
-                    app:icon="@drawable/ic_add_black_24dp"
+                    android:layout_marginEnd="16dp"
+                    android:tint="@color/colorGris"
+                    android:src="@drawable/ic_add_black_24dp"
                     app:iconTint="@color/colorGris"
                     app:layout_constraintBottom_toBottomOf="@+id/textFieldDateStart"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textFieldDateStart" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -103,9 +102,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/buttonDateStart"
+                    android:layout_marginEnd="16dp"
+                    android:hint="@string/date_start"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonDateStart"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textFieldFirstName">
 
 
@@ -115,12 +115,11 @@
                         android:layout_height="wrap_content"
                         android:editable="false"
                         android:focusable="false"
-                        app:date="@{viewModel.dateStartLong}"
-                 />
+                        app:date="@{viewModel.dateStartLong}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <RadioGroup
-                    android:id="@+id/radioGroup"
+                    android:id="@+id/radioGroupPeriod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -131,7 +130,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayoutHeight">
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/radioButtonDay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/very_small"
@@ -139,19 +138,21 @@
                         android:textColor="@color/colorGris" />
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/radioButtonWeek"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/very_small"
                         android:checked="true"
-                        android:text="@string/semaine" />
+                        android:text="@string/semaine"
+                        android:textColor="@color/colorGris" />
 
                     <RadioButton
-                        android:id="@+id/radioButton3"
+                        android:id="@+id/radioButtonMonth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/very_small"
-                        android:text="@string/mois" />
+                        android:text="@string/mois"
+                        android:textColor="@color/colorGris" />
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -168,12 +169,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/textFieldDateStart">
 
                     <AutoCompleteTextView
-                        android:id="@+id/filled_exposed_dropdown_max_customer"
+                        android:id="@+id/filled_exposed_dropdown_duration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:dropDownHeight="200dp"
-                        android:text="@{viewModel.durationInt.toString()}"
-                        android:editable="false" />
+                        android:editable="false"
+                        android:text="@={viewModel.durationInt}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -187,7 +188,7 @@
                     android:hint="@string/date_end"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroupPeriod">
 
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -195,21 +196,21 @@
                         android:layout_height="wrap_content"
                         android:editable="false"
                         android:focusable="false"
-                        android:text="@={viewModel.dateEndString}" />
+                        app:date="@{viewModel.dateEndLong}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingButtonAdd"
+            android:id="@+id/floatingButtonSave"
+            style="@style/Widget.Design.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.Design.FloatingActionButton"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_add_black_24dp" />
+            app:srcCompat="@drawable/ic_save_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

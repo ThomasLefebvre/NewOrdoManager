@@ -16,6 +16,7 @@
     <string name="semaine">semaine(s)</string>
     <string name="mois">mois</string>
     <string name="jours">jour(s)</string>
+    <string name="alert_msg_no_date">Veuillez selectionner une date et une durée.</string>
 
 
 

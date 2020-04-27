@@ -2,6 +2,7 @@ package com.lefebvre.thomas.newordomanager.ui.main
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.room.Database
@@ -20,24 +21,28 @@ class MainViewModel(application: Application) :
     //database
     private val database=DatabaseOrdonnance.getInstance(application).ordonnanceDao
 
-    val name = MutableLiveData<String>()
-    val firstName = MutableLiveData<String>()
-    val dateStartString = MutableLiveData<String>()
-    val dateStartLong = MutableLiveData<Long>()
-    val durationInt = MutableLiveData<Long>()
-    val dateEndString = MutableLiveData<String>()
-    val dateEndLong = MutableLiveData<Long>()
+    private var _listOrdo:LiveData<List<Ordonnance>>
+    val listOrdo:LiveData<List<Ordonnance>>
+    get() = _listOrdo
 
-//    private fun insertOrdo() {
+
+    init {
+        _listOrdo=database.getAllOrdonnances()
+    }
+
+    fun getAllOrdoByName(){
+        _listOrdo=database.getAllOrdonnancesByName()
+    }
+
+//    fun getListOrdo(){
 //        uiScope.launch {
-//            val ordonnance=Ordonnance(0,name.value!!,firstName.value!!,dateStartString.value!!,dateStartLong.value!!,dateEndString.value!!,dateEndLong.value!!)
-//            insertOrdoDatabase(ordonnance)
+//            getListOrdoDatabase()
 //        }
 //    }
 //
-//    private suspend fun insertOrdoDatabase(ordonnance:Ordonnance){
+//    private suspend fun getListOrdoDatabase() {
 //       withContext(Dispatchers.IO){
-//           database.insert(ordonnance)
+//          listOrdo.value = database.getOrderByName()
 //       }
 //    }
 

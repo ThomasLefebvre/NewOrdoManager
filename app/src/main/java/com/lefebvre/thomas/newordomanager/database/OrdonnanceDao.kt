@@ -1,5 +1,6 @@
 package com.lefebvre.thomas.newordomanager.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 
@@ -16,6 +17,12 @@ interface OrdonnanceDao {
 
     @Query("SELECT* FROM ordonnances WHERE name= :nom")
     fun loadOrdoById(nom:String):Ordonnance
+
+    @Query("SELECT * FROM ordonnances ORDER BY dateEndLong ASC")
+    fun getAllOrdonnances(): LiveData<List<Ordonnance>>
+
+    @Query("SELECT * FROM ordonnances ORDER BY name ASC")
+    fun getAllOrdonnancesByName(): LiveData<List<Ordonnance>>
 
 
     @Insert

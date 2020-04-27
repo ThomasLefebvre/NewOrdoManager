@@ -11,9 +11,7 @@ data class Ordonnance
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) var id: Long = 0,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "firstName") var firstName: String,
-    @ColumnInfo(name = "dateStartString") var dateStartString: String,
     @ColumnInfo(name = "dateStartLong") var dateStartLong: Long,
-    @ColumnInfo(name = "dateEndString") var dateEndString: String,
     @ColumnInfo(name = "dateEndLong") var dateEndLong: Long
 
 )
