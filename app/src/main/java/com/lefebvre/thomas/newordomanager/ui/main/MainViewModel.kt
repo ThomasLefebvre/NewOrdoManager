@@ -11,6 +11,7 @@ import com.lefebvre.thomas.newordomanager.database.Ordonnance
 import com.lefebvre.thomas.newordomanager.database.OrdonnanceDao
 import kotlinx.coroutines.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainViewModel(application: Application) :
     AndroidViewModel(application) {
@@ -19,32 +20,38 @@ class MainViewModel(application: Application) :
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     //database
-    private val database=DatabaseOrdonnance.getInstance(application).ordonnanceDao
+    private val database = DatabaseOrdonnance.getInstance(application).ordonnanceDao
 
-    private var _listOrdo:LiveData<List<Ordonnance>>
-    val listOrdo:LiveData<List<Ordonnance>>
-    get() = _listOrdo
+    var listOrdo = MutableLiveData<List<Ordonnance>>()
 
 
     init {
-        _listOrdo=database.getAllOrdonnances()
+
     }
 
-    fun getAllOrdoByName(){
-        _listOrdo=database.getAllOrdonnancesByName()
+    fun getAllOrdoByName() {
+        uiScope.launch {
+            getAllOrdoByNameDatabase()
+        }
     }
 
-//    fun getListOrdo(){
-//        uiScope.launch {
-//            getListOrdoDatabase()
-//        }
-//    }
-//
-//    private suspend fun getListOrdoDatabase() {
-//       withContext(Dispatchers.IO){
-//          listOrdo.value = database.getOrderByName()
-//       }
-//    }
+    private suspend fun getAllOrdoByNameDatabase() {
+        withContext(Dispatchers.IO) {
+            listOrdo.postValue(database.getAllOrdonnancesByName())
+        }
+    }
+
+    fun getAllOrdoByDateEnd() {
+        uiScope.launch {
+            getAllOrdoByDateEndDatabase()
+        }
+    }
+
+    private suspend fun getAllOrdoByDateEndDatabase() {
+        withContext(Dispatchers.IO) {
+            listOrdo.postValue(database.getAllOrdonnancesByDateEnd())
+        }
+    }
 
 
 }

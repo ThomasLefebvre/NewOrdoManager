@@ -19,10 +19,10 @@ interface OrdonnanceDao {
     fun loadOrdoById(nom:String):Ordonnance
 
     @Query("SELECT * FROM ordonnances ORDER BY dateEndLong ASC")
-    fun getAllOrdonnances(): LiveData<List<Ordonnance>>
+    fun getAllOrdonnancesByDateEnd(): List<Ordonnance>
 
     @Query("SELECT * FROM ordonnances ORDER BY name ASC")
-    fun getAllOrdonnancesByName(): LiveData<List<Ordonnance>>
+    fun getAllOrdonnancesByName(): List<Ordonnance>
 
 
     @Insert

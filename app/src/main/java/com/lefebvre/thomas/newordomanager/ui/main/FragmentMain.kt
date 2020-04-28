@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.android.material.chip.ChipGroup
 
 import com.lefebvre.thomas.newordomanager.R
 import com.lefebvre.thomas.newordomanager.databinding.FragmentMainBinding
@@ -21,7 +23,7 @@ class FragmentMain : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    private lateinit var adapterOrdo:OrdoAdapter
+    private lateinit var adapterOrdo: OrdoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,23 +36,29 @@ class FragmentMain : Fragment() {
         }
 
 
-        viewModel=ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
 
-        adapterOrdo= OrdoAdapter(OrdoListener { ordo->
+        adapterOrdo = OrdoAdapter(OrdoListener { ordo ->
             clickOrdo()
         })
 
-        binding.recyclerView.adapter=adapterOrdo
+        binding.recyclerView.adapter = adapterOrdo
 
-        viewModel.listOrdo.observe(viewLifecycleOwner, Observer { ordo->
+        viewModel.listOrdo.observe(viewLifecycleOwner, Observer { ordo ->
 
             adapterOrdo.submitList(ordo)
+
+            if (viewModel.listOrdo.value == null) {
+                binding.textViewNoOrdo.visibility = View.VISIBLE
+            }
         })
 
-        clickFilter()
+        viewModel.getAllOrdoByName()
 
-        binding.lifecycleOwner=this
+        checkChipFilter()
+
+        binding.lifecycleOwner = this
 
         return binding.root
     }
@@ -63,11 +71,20 @@ class FragmentMain : Fragment() {
         view?.findNavController()?.navigate(R.id.action_mainFragment_to_addFragment)
     }
 
-    private fun clickFilter(){
-        binding.imageButton.setOnClickListener {
-            viewModel.getAllOrdoByName()
-            adapterOrdo.notifyDataSetChanged()
-        }
+
+    private fun checkChipFilter() {
+        binding.chipGroup.setOnCheckedChangeListener(ChipGroup.OnCheckedChangeListener() { chipGroup: ChipGroup, i: Int ->
+            when (i) {
+                R.id.chipName -> {
+                    viewModel.getAllOrdoByName()
+                    adapterOrdo.notifyDataSetChanged()
+                }
+                R.id.chipDateEnd -> {
+                    viewModel.getAllOrdoByDateEnd()
+                    adapterOrdo.notifyDataSetChanged()
+                }
+            }
+        })
     }
 
 }

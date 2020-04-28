@@ -17,6 +17,9 @@
     <string name="mois">mois</string>
     <string name="jours">jour(s)</string>
     <string name="alert_msg_no_date">Veuillez selectionner une date et une durée.</string>
+    <string name="by_name">Nom</string>
+    <string name="by_date_end">Date fin</string>
+    <string name="by_firstname">Prénom</string>
 
 
 

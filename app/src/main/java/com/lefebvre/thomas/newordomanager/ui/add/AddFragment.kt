@@ -111,7 +111,7 @@ class AddFragment : Fragment() {
         binding.floatingButtonSave.setOnClickListener {
 
             viewModel.insertOrdo()
-            view!!.findNavController().navigate(R.id.action_addFragment_to_mainFragment)
+            requireView().findNavController().navigate(R.id.action_addFragment_to_mainFragment)
 
             Toast.makeText(requireContext(),viewModel.name.value.toString()+viewModel.firstName.value+viewModel.dateEndLong.value.toString()+viewModel.dateStartLong.value.toString(),Toast.LENGTH_LONG).show()
         }
