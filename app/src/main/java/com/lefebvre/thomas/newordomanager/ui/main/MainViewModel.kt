@@ -24,12 +24,14 @@ class MainViewModel(application: Application) :
 
     var listOrdo = MutableLiveData<List<Ordonnance>>()
 
+    val searchName=MutableLiveData<String>()
+
 
     init {
 
     }
 
-    fun getAllOrdoByName() {
+    fun getAllOrdoByName() {//get ordo by name
         uiScope.launch {
             getAllOrdoByNameDatabase()
         }
@@ -41,7 +43,7 @@ class MainViewModel(application: Application) :
         }
     }
 
-    fun getAllOrdoByDateEnd() {
+    fun getAllOrdoByDateEnd() {//get ordo by date end
         uiScope.launch {
             getAllOrdoByDateEndDatabase()
         }
@@ -50,6 +52,19 @@ class MainViewModel(application: Application) :
     private suspend fun getAllOrdoByDateEndDatabase() {
         withContext(Dispatchers.IO) {
             listOrdo.postValue(database.getAllOrdonnancesByDateEnd())
+        }
+    }
+
+    fun getOrdoByNameQuery() {
+        uiScope.launch {
+            getOrdoByNameQueryDatabase()
+        }
+    }
+
+    private suspend fun getOrdoByNameQueryDatabase() {
+        withContext(Dispatchers.IO) {
+            val name="%${searchName.value}%"
+            listOrdo.postValue(database.getOrdoByNameQuery(name))
         }
     }
 

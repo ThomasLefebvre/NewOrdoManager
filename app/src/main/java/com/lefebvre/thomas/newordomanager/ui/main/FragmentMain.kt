@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.ChipGroup
 
 import com.lefebvre.thomas.newordomanager.R
 import com.lefebvre.thomas.newordomanager.databinding.FragmentMainBinding
 import com.lefebvre.thomas.newordomanager.ui.add.AddOrdoViewModel
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class FragmentMain : Fragment() {
@@ -43,6 +47,12 @@ class FragmentMain : Fragment() {
             clickOrdo()
         })
 
+        binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
+            )
+        )
         binding.recyclerView.adapter = adapterOrdo
 
         viewModel.listOrdo.observe(viewLifecycleOwner, Observer { ordo ->
@@ -57,6 +67,29 @@ class FragmentMain : Fragment() {
         viewModel.getAllOrdoByName()
 
         checkChipFilter()
+
+
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchName.value = query
+                viewModel.getOrdoByNameQuery()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+//                Toast.makeText(requireContext(),query,Toast.LENGTH_LONG).show()
+                return true
+            }
+
+        })
+
+
+
+
+
+
+
 
         binding.lifecycleOwner = this
 
@@ -77,11 +110,11 @@ class FragmentMain : Fragment() {
             when (i) {
                 R.id.chipName -> {
                     viewModel.getAllOrdoByName()
-                    adapterOrdo.notifyDataSetChanged()
+
                 }
                 R.id.chipDateEnd -> {
                     viewModel.getAllOrdoByDateEnd()
-                    adapterOrdo.notifyDataSetChanged()
+
                 }
             }
         })
