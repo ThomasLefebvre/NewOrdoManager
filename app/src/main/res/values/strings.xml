@@ -10,7 +10,7 @@
     <string name="duration">Durée</string>
     <string name="chronicle">Chronique</string>
 
-    
+
     <string name="patient">Patient</string>
     <string name="ordonnance">Ordonnance</string>
     <string name="semaine">semaine(s)</string>
@@ -20,11 +20,6 @@
     <string name="by_name">Nom</string>
     <string name="by_date_end">Date fin</string>
     <string name="by_firstname">Prénom</string>
-
-
-
-
-
 
 
 </resources>
